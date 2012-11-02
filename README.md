@@ -19,22 +19,22 @@ Clone/download this repository in any folder. Enjoy! ;)
 Example Of Usage: Backup MySQL Dumps
 ------------------------------------
 
-Create config file (yaml syntax) for all databases:
+Create config file (*.ini syntax) for all databases:
 
-    first_database:
-        database:
-            host: 'localhost'
-            port: '3306'
-            user: 'project'
-            password: 'pwd'
-            db: 'first_db'
-        backup_dir: '/home/backups/mysql_first_db'
-        git_remote: 'git@github.com/username/privaterepo.git' # this repo must be empty!
-    second_database:
+    [first_database]
+        db_host='localhost'
+        db_port='3306'
+        db_user='project'
+        db_password='pwd'
+        db_name='first_db'
+        backup_dir='/home/backups/mysql_first_db'
+        git_remote='git@github.com/username/privaterepo.git'
+
+    [second_database]
         # ...
 
 And add this command in crontab:
 
-    /path/to/git_backup_tool/backup_mysql.py --config=/path/to/mysql_config.yml
+    /path/to/git_backup_tool/backup_mysql.py --config=/path/to/mysql_config.ini
 
 Get profit!
