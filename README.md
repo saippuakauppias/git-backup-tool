@@ -22,16 +22,16 @@ Example Of Usage: Backup MySQL Dumps
 Create config file (*.ini syntax) for all databases:
 
     [first_database]
-        db_host='localhost'
-        db_port='3306'
-        db_user='project'
-        db_password='pwd'
-        db_name='first_db'
-        backup_dir='/home/backups/mysql_first_db'
-        git_remote='git@github.com/username/privaterepo.git'
+    db_host     = localhost
+    db_port     = 3306
+    db_user     = project
+    db_password = pwd
+    db_name     = first_db
+    backup_dir  = /home/backups/mysql_first_db
+    git_remote  = git@github.com/username/privaterepo.git
 
     [second_database]
-        # ...
+    ; settings for second database
 
 And add this command in crontab:
 
