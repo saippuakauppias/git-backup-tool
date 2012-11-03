@@ -1,3 +1,4 @@
+from shlex import split as shlex_split
 from subprocess import Popen, PIPE
 from ConfigParser import ConfigParser
 
@@ -14,6 +15,8 @@ def config_from_file(filename):
 
 
 def run_command(command, cwd=None):
+    if isinstance(command, str):
+        command = shlex_split(command)
     cmd = Popen(command, cwd=cwd, stdout=PIPE, stderr=PIPE)
     err = cmd.stderr.read()
     out = cmd.stdout.read()
