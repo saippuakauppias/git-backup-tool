@@ -42,3 +42,9 @@ And add this command in crontab:
     /path/to/git_backup_tool/backup_mysql.py --config=/path/to/mysql_config.ini
 
 Get profit!
+
+
+Run Tests
+---------
+
+    $ python -m unittest tests
