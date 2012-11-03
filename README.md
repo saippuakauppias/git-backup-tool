@@ -1,4 +1,4 @@
-git-backup-tool
+git-backup-tool [![Build Status](https://secure.travis-ci.org/saippuakauppias/git-backup-tool.png)](http://travis-ci.org/saippuakauppias/git-backup-tool)
 ===============
 
 Backup your data (mysql or pgsql dumps, media files, scripts, etc) in private git repositories (bitbucket or github).
