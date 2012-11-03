@@ -1,0 +1,1 @@
+from git_backup_tool.tests.test_utils import ConfigFromFileTests
