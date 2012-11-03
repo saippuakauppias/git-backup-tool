@@ -37,7 +37,8 @@ class ConfigFromFileTests(unittest.TestCase):
                          'git@github.com/username/privaterepo.git')
 
         config = self.config['second_database']
-        self.assertEqual(config.get('db_host'), 'localhost')
+        self.assertEqual(config.get('db_socket'),
+                         '/var/run/mysqld/mysqld.sock')
         self.assertEqual(config.get('db_user'), 'project_2')
         self.assertEqual(config.get('db_name'), 'second_db')
         self.assertEqual(config.get('backup_dir'),

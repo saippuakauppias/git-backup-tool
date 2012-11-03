@@ -32,6 +32,7 @@ Create config file (*.ini syntax) for all databases:
 
     [second_database]
     ; settings for second database
+    db_socket   = /var/run/mysqld/mysqld.sock
 
 
 Generate [SSH key](https://help.github.com/articles/generating-ssh-keys) in server for your repositories hoster (github, bitbucket).
