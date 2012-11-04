@@ -14,7 +14,9 @@ def config_from_file(filename):
 
 
 def run_command(command, cwd=None):
-    cmd = Popen(command, cwd=cwd, stdout=PIPE, stderr=PIPE)
+    if isinstance(command, list):
+        command = ' '.join(command)
+    cmd = Popen(command, cwd=cwd, stdout=PIPE, stderr=PIPE, shell=True)
     err = cmd.stderr.read()
     out = cmd.stdout.read()
     if err:
