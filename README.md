@@ -38,7 +38,7 @@ Create config file (*.ini syntax) for all databases:
 Generate [SSH key](https://help.github.com/articles/generating-ssh-keys) in server for your repositories hoster (github, bitbucket).
 
 
-And add this command in crontab:
+Run manually for test errors and add this command in crontab:
 
     /path/to/git_backup_tool/backup_mysql.py --config=/path/to/mysql_config.ini
 
