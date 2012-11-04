@@ -10,7 +10,7 @@ from git import (git_init, git_add_all, git_status, git_commit,
 
 def main(config_file):
     config = config_from_file(config_file)
-    for database in config:
+    for database in config.values():
         # create directory for backup
         if 'backup_dir' in database and \
            not os.path.exists(database['backup_dir']):
