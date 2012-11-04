@@ -31,9 +31,9 @@ Create config file (*.ini syntax) for all databases:
     git_remote  = ssh://git@bitbucket.org/user/private_repo.git
 
     [second_database]
-    ; settings for second database
-    db_socket   = /var/run/mysqld/mysqld.sock
-    git_remote  = git@github.com:user/private_repo.git
+    ; another settings syntax and other options
+    db_socket=/var/run/mysqld/mysqld.sock
+    git_remote=git@github.com:user/private_repo.git
 
 
 Generate [SSH key](https://help.github.com/articles/generating-ssh-keys) in server for your repositories hoster (github, bitbucket).
