@@ -1,7 +1,7 @@
 from subprocess import Popen, PIPE
 from ConfigParser import ConfigParser
 
-import exceptions
+#import exceptions
 
 
 def config_from_file(filename):
@@ -18,5 +18,5 @@ def run_command(command, cwd=None):
     err = cmd.stderr.read()
     out = cmd.stdout.read()
     if err:
-        raise exceptions.RunCommandError(err)
+        raise Exception(err)
     return out
