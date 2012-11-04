@@ -28,11 +28,12 @@ Create config file (*.ini syntax) for all databases:
     db_password = pwd
     db_name     = first_db
     backup_dir  = /home/backups/mysql_first_db
-    git_remote  = git@github.com/username/privaterepo.git
+    git_remote  = ssh://git@bitbucket.org/user/private_repo.git
 
     [second_database]
     ; settings for second database
     db_socket   = /var/run/mysqld/mysqld.sock
+    git_remote  = git@github.com:user/private_repo.git
 
 
 Generate [SSH key](https://help.github.com/articles/generating-ssh-keys) in server for your repositories hoster (github, bitbucket).
