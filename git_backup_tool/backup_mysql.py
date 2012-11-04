@@ -39,6 +39,9 @@ def main(config_file):
         # push changes
         git_push(database['backup_dir'])
 
+        # done
+        print 'Done! Database backuped!'
+
 
 if __name__ == '__main__':
     parser = OptionParser()
