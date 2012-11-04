@@ -20,7 +20,8 @@ def git_commit(directory, status):
 def git_remote_add(directory, git_remote):
     remote_exists = run_command('git remote show', directory)
     if not remote_exists:
-        print run_command('git remote add origin {0}'.format(git_remote))
+        print run_command('git remote add origin {0}'.format(git_remote),
+                          directory)
 
 
 def git_push(directory):
