@@ -17,7 +17,7 @@ def main(config_file):
             os.makedirs(database['backup_dir'])
 
         # create empty git repo
-        if os.path.exists(database['backup_dir'], '.git'):
+        if not os.path.exists(os.path.join(database['backup_dir'], '.git')):
             git_init(database['backup_dir'])
 
         # backup database
