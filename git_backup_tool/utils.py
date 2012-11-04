@@ -13,12 +13,15 @@ def config_from_file(filename):
     return result
 
 
-def run_command(command, cwd=None):
+def run_command(command, cwd=None, safe=False):
     if isinstance(command, list):
         command = ' '.join(command)
     cmd = Popen(command, cwd=cwd, stdout=PIPE, stderr=PIPE, shell=True)
     err = cmd.stderr.read()
     out = cmd.stdout.read()
     if err:
-        raise Exception(err)
+        if safe:
+            print '{0}: {1}'.format(command, err)
+        else:
+            raise Exception(err)
     return out

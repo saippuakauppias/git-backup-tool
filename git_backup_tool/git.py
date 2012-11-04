@@ -24,4 +24,4 @@ def git_remote_add(directory, git_remote):
 
 
 def git_push(directory):
-    print run_command('git push -u origin master', directory)
+    print run_command('git push -u origin master', directory, safe=True)
