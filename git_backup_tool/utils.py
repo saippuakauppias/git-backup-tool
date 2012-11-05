@@ -30,15 +30,13 @@ def run_command(command, cwd=None, safe=False):
 
 def construct_dump_command(database, db_type):
     if db_type == 'pgsql' and 'db_user' in database:
-        # magic
-        user = database['db_user']
-        del database['db_user']
-        database['db_username'] = user
+        # magic for pgsql param
+        database['db_username'] = database.pop('db_user')
 
-    db_params = filter(lambda x: x.startswith('db_'), database)
+    db_params = filter(lambda x: x.startswith('db_') and x != 'db_name',
+                       database)
     db_name = database.get('db_name', '')
-    if db_name:
-        db_params.remove('db_name')
+
     backup = 'mysql_dump.sql' if db_type == 'mysql' else 'pgsql_dump.sql'
     if 'backup_dir' in database:
         backup = os.path.join(database['backup_dir'], backup)
@@ -52,6 +50,5 @@ def construct_dump_command(database, db_type):
         command.append('--{0}={1}'.format(param[3:], database[param]))
     if db_name:
         command.append(db_name)
-    command.append('>')
-    command.append(backup)
+    command += ['>', backup]
     return command
