@@ -16,13 +16,17 @@ It is a very simple (without 'pip/easy_install' and install requirements)!
 Clone/download this repository in any folder. Enjoy! ;)
 
 
-Example Of Usage: Backup MySQL Dumps
-------------------------------------
+Example Of Usage
+----------------
 
-Create config file (*.ini syntax) for all databases:
+Create config file (*.ini syntax) for all backups (databases, files):
 
-    [first_database]
+    [mysql_database]
+    ; settings for backup MySQL database
+    type        = mysql
     db_host     = localhost
+    ; db_host or db_socket
+    ; db_socket   = /var/run/mysqld/mysqld.sock
     db_port     = 3306
     db_user     = project
     db_password = pwd
@@ -30,10 +34,25 @@ Create config file (*.ini syntax) for all databases:
     backup_dir  = /home/backups/mysql_first_db
     git_remote  = ssh://git@bitbucket.org/user/private_repo.git
 
-    [second_database]
-    ; another settings syntax and other options
-    db_socket=/var/run/mysqld/mysqld.sock
-    git_remote=git@github.com:user/private_repo.git
+    [pgsql_database]
+    ; settings for backup PostgreSQL
+    type        = pgsql
+    db_host     = localhost
+    db_port     = 5432
+    db_user     = project
+    db_password = pwd
+    db_name     = database_name
+    backup_dir  = /home/backups/pgsql_db
+    git_remote  = git@github.com:user/private_repo.git
+
+    [scripts_backup]
+    ; settings for backup scripts (any files)
+    type        = files
+    ; copy all files from files_dir to backup_dir
+    ; create in files_dir .gitignore file for exclude any files/dirs
+    files_dir   = /home/user/src
+    backup_dir  = /home/backups/src
+    git_remote  = git@github.com:user/private_src_repo.git
 
 
 Generate [SSH key](https://help.github.com/articles/generating-ssh-keys) in server for your repositories hoster (github, bitbucket).
@@ -41,7 +60,7 @@ Generate [SSH key](https://help.github.com/articles/generating-ssh-keys) in serv
 
 Run manually for test errors and add this command in crontab:
 
-    /path/to/git_backup_tool/backup_mysql.py --config=/path/to/mysql_config.ini
+    /path/to/git_backup_tool/git_backuper.py --config=/path/to/config.ini
 
 Get profit!
 
