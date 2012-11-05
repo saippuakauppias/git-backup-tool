@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from ..utils import config_from_file, construct_mysql_command
+from ..utils import config_from_file, construct_dump_command
 
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
@@ -67,7 +67,8 @@ class ConstructMySQLCommandTests(unittest.TestCase):
         full_command = ['mysqldump', '--user=project', '--password=pwd',
                         '--port=3306', '--host=localhost', 'first_db', '>',
                         '/home/backups/mysql_first_db/mysql_dump.sql']
-        self.assertEqual(construct_mysql_command(self.database), full_command)
+        self.assertEqual(construct_dump_command(self.database, 'mysql'),
+                         full_command)
 
     def test_with_socket(self):
         del self.database['db_host']
@@ -76,27 +77,33 @@ class ConstructMySQLCommandTests(unittest.TestCase):
                         '--port=3306', '--socket=/var/run/mysqld/mysqld.sock',
                         'first_db', '>',
                         '/home/backups/mysql_first_db/mysql_dump.sql']
-        self.assertEqual(construct_mysql_command(self.database), full_command)
+        self.assertEqual(construct_dump_command(self.database, 'mysql'),
+                         full_command)
 
     def test_minimal_config(self):
         del self.database['backup_dir']
         del self.database['db_host']
         del self.database['db_port']
         del self.database['git_remote']
-        full_command = ['mysqldump', '--user=project', '--password=pwd',
-                        'first_db', '>', 'mysql_dump.sql']
-        self.assertEqual(construct_mysql_command(self.database), full_command)
+        full_command = ['pg_dump', '--format=plain', '--password=pwd',
+                        '--username=project', 'first_db', '>',
+                        'pgsql_dump.sql']
+        self.assertEqual(construct_dump_command(self.database, 'pgsql'),
+                         full_command)
 
     def test_without_db_name(self):
         del self.database['db_name']
         full_command = ['mysqldump', '--user=project', '--password=pwd',
                         '--port=3306', '--host=localhost', '>',
                         '/home/backups/mysql_first_db/mysql_dump.sql']
-        self.assertEqual(construct_mysql_command(self.database), full_command)
+        self.assertEqual(construct_dump_command(self.database, 'mysql'),
+                         full_command)
 
     def test_without_backup_dir(self):
         del self.database['backup_dir']
-        full_command = ['mysqldump', '--user=project', '--password=pwd',
-                        '--port=3306', '--host=localhost', 'first_db', '>',
-                        'mysql_dump.sql']
-        self.assertEqual(construct_mysql_command(self.database), full_command)
+        full_command = ['pg_dump', '--format=plain', '--password=pwd',
+                        '--port=3306', '--host=localhost',
+                        '--username=project', 'first_db', '>',
+                        'pgsql_dump.sql']
+        self.assertEqual(construct_dump_command(self.database, 'pgsql'),
+                         full_command)

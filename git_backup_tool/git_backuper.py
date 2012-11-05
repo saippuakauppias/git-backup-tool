@@ -2,7 +2,7 @@ import os
 
 from optparse import OptionParser
 
-from utils import config_from_file, run_command, construct_mysql_command
+from utils import config_from_file, run_command, construct_dump_command
 from git import (git_init, git_add_all, git_status, git_commit,
                  git_remote_add, git_push)
 
@@ -19,8 +19,13 @@ def main(config_file):
         if not os.path.exists(os.path.join(database['backup_dir'], '.git')):
             git_init(database['backup_dir'])
 
-        # backup database
-        print run_command(construct_mysql_command(database))
+        if database['type'] in ['mysql', 'pgsql']:
+            # backup database
+            print run_command(construct_dump_command(database,
+                                                     database['type']))
+        else:
+            # backup files
+            pass
 
         # add changes in repo
         git_add_all(database['backup_dir'])
