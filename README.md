@@ -16,6 +16,21 @@ It is a very simple (without 'pip/easy_install' and install requirements)!
 Clone/download this repository in any folder. Enjoy! ;)
 
 
+Configuration
+-------------
+
+1. Install git:
+
+    $ sudo apt-get install git
+
+2. Configure git:
+
+    $ git config --global user.name "My User Name"
+    $ git config --global user.email "myemail@gmail.com"
+
+3. Generate [SSH key](https://help.github.com/articles/generating-ssh-keys) in server for your repositories hoster (github, bitbucket).
+
+
 Example Of Usage
 ----------------
 
@@ -55,10 +70,7 @@ Create config file (*.ini syntax) for all backups (databases, files):
     git_remote  = git@github.com:user/private_src_repo.git
 
 
-Generate [SSH key](https://help.github.com/articles/generating-ssh-keys) in server for your repositories hoster (github, bitbucket).
-
-
-Run manually for test errors and add this command in crontab:
+Run manually (for fix errors) and add this command in crontab:
 
     /path/to/git_backup_tool/git_backuper.py --config=/path/to/config.ini
 
