@@ -25,7 +25,9 @@ def main(config_file):
                                                      settings['type']))
         else:
             # backup files
-            pass
+            files_dir = os.path.join(settings['files_dir'], '.')
+            backup_dir = settings['backup_dir']
+            print run_command('cp -a {0} {1}'.format(files_dir, backup_dir))
 
         # add changes in repo
         git_add_all(settings['backup_dir'])
