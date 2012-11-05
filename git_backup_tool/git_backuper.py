@@ -9,42 +9,42 @@ from git import (git_init, git_add_all, git_status, git_commit,
 
 def main(config_file):
     config = config_from_file(config_file)
-    for database in config.values():
+    for section, settings in config.items():
         # create directory for backup
-        if 'backup_dir' in database and \
-           not os.path.exists(database['backup_dir']):
-            os.makedirs(database['backup_dir'])
+        if 'backup_dir' in settings and \
+           not os.path.exists(settings['backup_dir']):
+            os.makedirs(settings['backup_dir'])
 
         # create empty git repo
-        if not os.path.exists(os.path.join(database['backup_dir'], '.git')):
-            git_init(database['backup_dir'])
+        if not os.path.exists(os.path.join(settings['backup_dir'], '.git')):
+            git_init(settings['backup_dir'])
 
-        if database['type'] in ['mysql', 'pgsql']:
+        if settings['type'] in ['mysql', 'pgsql']:
             # backup database
-            print run_command(construct_dump_command(database,
-                                                     database['type']))
+            print run_command(construct_dump_command(settings,
+                                                     settings['type']))
         else:
             # backup files
             pass
 
         # add changes in repo
-        git_add_all(database['backup_dir'])
+        git_add_all(settings['backup_dir'])
 
         # get status message for commit
-        status_message = git_status(database['backup_dir'])
+        status_message = git_status(settings['backup_dir'])
         print status_message
 
         # commit changes
-        git_commit(database['backup_dir'], status_message)
+        git_commit(settings['backup_dir'], status_message)
 
         # add remote for pushing
-        git_remote_add(database['backup_dir'], database['git_remote'])
+        git_remote_add(settings['backup_dir'], settings['git_remote'])
 
         # push changes
-        git_push(database['backup_dir'])
+        git_push(settings['backup_dir'])
 
         # done
-        print 'Done! Database backuped!'
+        print 'Done! {0} backuped!'.format(section)
 
 
 if __name__ == '__main__':
