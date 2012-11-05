@@ -2,8 +2,7 @@ import os
 
 from optparse import OptionParser
 
-from database import construct_mysql_command
-from utils import config_from_file, run_command
+from utils import config_from_file, run_command, construct_mysql_command
 from git import (git_init, git_add_all, git_status, git_commit,
                  git_remote_add, git_push)
 

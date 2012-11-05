@@ -1,2 +1,1 @@
-from git_backup_tool.tests.test_utils import ConfigFromFileTests
-from git_backup_tool.tests.test_database import ConstructMySQLCommandTests
+from git_backup_tool.tests.test_utils import ConfigFromFileTests, ConstructMySQLCommandTests
