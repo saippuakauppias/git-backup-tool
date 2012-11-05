@@ -26,6 +26,7 @@ Configuration
 2. Configure git:
 
     $ git config --global user.name "My User Name"
+
     $ git config --global user.email "myemail@gmail.com"
 
 3. Generate [SSH key](https://help.github.com/articles/generating-ssh-keys) in server for your repositories hoster (github, bitbucket).
