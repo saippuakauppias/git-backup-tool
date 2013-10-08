@@ -82,3 +82,7 @@ Run Tests
 ---------
 
     $ python -m unittest tests
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/saippuakauppias/git-backup-tool/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
